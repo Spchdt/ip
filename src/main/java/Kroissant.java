@@ -1,4 +1,4 @@
-public class Duke {
+public class Kroissant {
     public static void main(String[] args) {
         System.out.println("____________________________________________________________");
         System.out.println("  Welcome! I'm Kroissant.");
