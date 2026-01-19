@@ -12,4 +12,5 @@ event eat bread
 blah
 mark 100
 mark
+delete 3
 bye
