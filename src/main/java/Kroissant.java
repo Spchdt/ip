@@ -87,6 +87,12 @@ public class Kroissant {
                         printAddedTask(newEvent, tasks.size());
                         break;
 
+                    case "delete":
+                        validateArgs(arguments);
+                        int deleteIndex = Integer.parseInt(arguments) - 1;
+                        Task removedTask = tasks.remove(deleteIndex);
+                        printDeletedTasks(removedTask, tasks.size());
+                        break;
                     default:
                         throw new KroissantException("I don't have a recipe for that! Is it a secret menu item?");
                 }
@@ -111,6 +117,12 @@ public class Kroissant {
 
     public static void printLine() {
         System.out.println("____________________________________________________________");
+    }
+
+    public static void printDeletedTasks(Task task, int size) {
+        System.out.println("  Noted. This one out the oven:");
+        System.out.println("    " + task);
+        System.out.println("  Now you have " + size + " pastries baking in the list!");
     }
 
     public static void printAddedTask(Task task, int size) {
