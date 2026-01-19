@@ -4,76 +4,108 @@ import java.util.Scanner;
 public class Kroissant {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        //welcome message
-        printLine();
-        System.out.println("  Welcome! I'm Kroissant.");
-        System.out.println("  What do you knead today?");
-        printLine();
-
-        //Save and display list
-        String input = "";
         ArrayList<Task> tasks = new ArrayList<>();
 
-        while(!input.equals("bye")) {
+        printLine();
+        System.out.println("  Rise and Shine! I'm Kroissant.");
+        System.out.println("  What ingredients are we mixing today?");
+        printLine();
+
+        String input = "";
+
+        while (true) {
             System.out.print(">> ");
             input = scanner.nextLine();
-            String command = input.split(" ")[0];
-            String arguments = input.substring(input.indexOf(" ") + 1);
 
-            switch (command) {
-                case "list":
-                    System.out.println("  Here's what's still need to be cooking:");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        System.out.println((i + 1) + ". " + tasks.get(i));
-                    }
-                    break;
+            // 1. Check for exit command immediately
+            if (input.equals("bye")) {
+                break;
+            }
 
-                case "mark":
-                    Task MarkedTask = tasks.get(Integer.parseInt(arguments) - 1);
-                    MarkedTask.markDone();
-                    System.out.println("  Good Job! This task is fully baked:");
-                    System.out.println("    " + MarkedTask);
-                    break;
+            try {
+                // 2. Safe Parsing
+                String[] parts = input.split(" ", 2);
+                String command = parts[0];
+                String arguments = (parts.length > 1) ? parts[1] : "";
 
-                case "unmark":
-                    Task UnmarkedTask = tasks.get(Integer.parseInt(arguments) - 1);
-                    UnmarkedTask.markUndone();
-                    System.out.println("  hmm OK, this needs more kneading:");
-                    System.out.println("    " + UnmarkedTask);
-                    break;
+                printLine();
 
-                case "todo":
-                    Task newTodo = new Todo(arguments);
-                    tasks.add(newTodo);
-                    printAddedTask(newTodo, tasks.size());
-                    break;
+                switch (command) {
+                    case "list":
+                        if (tasks.isEmpty()) {
+                            System.out.println("  The oven is empty! Time to get kneading.");
+                        } else {
+                            System.out.println("  Here are the pastries rising in your list:");
+                            for (int i = 0; i < tasks.size(); i++) {
+                                System.out.println("  " + (i + 1) + ". " + tasks.get(i));
+                            }
+                        }
+                        break;
 
-                case "deadline":
-                    String[] deadlineArgs = arguments.split(" /");
-                    Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
-                    tasks.add(newDeadline);
-                    printAddedTask(newDeadline, tasks.size());
-                    break;
+                    case "mark":
+                        validateArgs(arguments);
+                        int markIndex = Integer.parseInt(arguments) - 1;
+                        tasks.get(markIndex).markDone();
+                        System.out.println("  Chef's kiss! This task is golden brown and fully baked:");
+                        System.out.println("    " + tasks.get(markIndex));
+                        break;
 
-                case "event":
-                    String[] eventArgs = arguments.split(" /");
-                    Task newEvent = new Event(eventArgs[0], eventArgs[1], eventArgs[2]);
-                    tasks.add(newEvent);
-                    printAddedTask(newEvent, tasks.size());
-                    break;
+                    case "unmark":
+                        validateArgs(arguments);
+                        int unmarkIndex = Integer.parseInt(arguments) - 1;
+                        tasks.get(unmarkIndex).markUndone();
+                        System.out.println("  Oops, looks a bit doughy inside. Putting it back in the oven:");
+                        System.out.println("    " + tasks.get(unmarkIndex));
+                        break;
 
-                default:
-                    System.out.println(input);
-                    break;
+                    case "todo":
+                        if (arguments.isEmpty()) {
+                            throw new KroissantException("You can't bake air! The description is empty.");
+                        }
+                        Task newTodo = new Todo(arguments);
+                        tasks.add(newTodo);
+                        printAddedTask(newTodo, tasks.size());
+                        break;
+
+                    case "deadline":
+                        if (!arguments.contains(" /by ")) {
+                            throw new KroissantException("Don't let it burn! Please set a '/by' timer.");
+                        }
+                        String[] deadlineArgs = arguments.split(" /by ", 2);
+                        Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
+                        tasks.add(newDeadline);
+                        printAddedTask(newDeadline, tasks.size());
+                        break;
+
+                    case "event":
+                        if (!arguments.contains(" /from ") || !arguments.contains(" /to ")) {
+                            throw new KroissantException("This party is half-baked! I need '/from' and '/to' times.");
+                        }
+                        String[] eventArgs = arguments.split(" /from | /to ");
+                        Task newEvent = new Event(eventArgs[0], eventArgs[1], eventArgs[2]);
+                        tasks.add(newEvent);
+                        printAddedTask(newEvent, tasks.size());
+                        break;
+
+                    default:
+                        throw new KroissantException("I don't have a recipe for that! Is it a secret menu item?");
+                }
+
+            } catch (KroissantException e) {
+                System.out.println("  OH CRUMBS!!! " + e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("  OH CRUMBS!!! That's not a number, you doughnut!");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("  OH CRUMBS!!! We don't have that many batches in the oven.");
             }
 
             printLine();
         }
 
-        //Exit Message
+        // Exit Message
+        printLine();
         System.out.println("  Time to roll out!");
-        System.out.println("  Hope you have a loafly day!");
+        System.out.println("  Let's get this bread again soon!");
         printLine();
     }
 
@@ -82,8 +114,14 @@ public class Kroissant {
     }
 
     public static void printAddedTask(Task task, int size) {
-        System.out.println("  Added task:");
+        System.out.println("  Okay, I've folded this into the dough:");
         System.out.println("    " + task);
-        System.out.println("Now you got " + size + " stuff in the list!");
+        System.out.println("  Now you have " + size + " pastries baking in the list!");
+    }
+
+    public static void validateArgs(String args) throws KroissantException {
+        if (args.isEmpty()) {
+            throw new KroissantException("Which one? Give me the number, don't be a loafer!");
+        }
     }
 }
