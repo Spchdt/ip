@@ -18,9 +18,10 @@ public class Kroissant {
         while(!input.equals("bye")) {
             System.out.print(">> ");
             input = scanner.nextLine();
-            String[] commands = input.split(" ");
+            String command = input.split(" ")[0];
+            String arguments = input.substring(input.indexOf(" ") + 1);
 
-            switch (commands[0]) {
+            switch (command) {
                 case "list":
                     System.out.println("  Here's what's still need to be cooking:");
                     for (int i = 0; i < tasks.size(); i++) {
@@ -29,22 +30,41 @@ public class Kroissant {
                     break;
 
                 case "mark":
-                    Task MarkedTask = tasks.get(Integer.parseInt(commands[1]) - 1);
+                    Task MarkedTask = tasks.get(Integer.parseInt(arguments) - 1);
                     MarkedTask.markDone();
                     System.out.println("  Good Job! This task is fully baked:");
                     System.out.println("    " + MarkedTask);
                     break;
 
                 case "unmark":
-                    Task UnmarkedTask = tasks.get(Integer.parseInt(commands[1]) - 1);
+                    Task UnmarkedTask = tasks.get(Integer.parseInt(arguments) - 1);
                     UnmarkedTask.markUndone();
                     System.out.println("  hmm OK, this needs more kneading:");
                     System.out.println("    " + UnmarkedTask);
                     break;
 
+                case "todo":
+                    Task newTodo = new Todo(arguments);
+                    tasks.add(newTodo);
+                    printAddedTask(newTodo, tasks.size());
+                    break;
+
+                case "deadline":
+                    String[] deadlineArgs = arguments.split(" /");
+                    Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
+                    tasks.add(newDeadline);
+                    printAddedTask(newDeadline, tasks.size());
+                    break;
+
+                case "event":
+                    String[] eventArgs = arguments.split(" /");
+                    Task newEvent = new Event(eventArgs[0], eventArgs[1], eventArgs[2]);
+                    tasks.add(newEvent);
+                    printAddedTask(newEvent, tasks.size());
+                    break;
+
                 default:
-                    tasks.add(new Task(input));
-                    System.out.println("added: " + input);
+                    System.out.println(input);
                     break;
             }
 
@@ -59,5 +79,11 @@ public class Kroissant {
 
     public static void printLine() {
         System.out.println("____________________________________________________________");
+    }
+
+    public static void printAddedTask(Task task, int size) {
+        System.out.println("  Added task:");
+        System.out.println("    " + task);
+        System.out.println("Now you got " + size + " stuff in the list!");
     }
 }
