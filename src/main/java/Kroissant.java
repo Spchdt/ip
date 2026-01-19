@@ -12,20 +12,40 @@ public class Kroissant {
         printLine();
 
         //Save and display list
-        String userMsg = "";
-        ArrayList<String> tasks = new ArrayList<>();
+        String input = "";
+        ArrayList<Task> tasks = new ArrayList<>();
 
-        while(!userMsg.equals("bye")) {
+        while(!input.equals("bye")) {
             System.out.print(">> ");
-            userMsg = scanner.nextLine();
+            input = scanner.nextLine();
+            String[] commands = input.split(" ");
 
-            if (userMsg.equals("list")) {
-                for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println((i + 1) + ". " + tasks.get(i));
-                }
-            } else {
-                tasks.add(userMsg);
-                System.out.println("added: " + userMsg);
+            switch (commands[0]) {
+                case "list":
+                    System.out.println("  Here's what's still need to be cooking:");
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.println((i + 1) + ". " + tasks.get(i));
+                    }
+                    break;
+
+                case "mark":
+                    Task MarkedTask = tasks.get(Integer.parseInt(commands[1]) - 1);
+                    MarkedTask.markDone();
+                    System.out.println("  Good Job! This task is fully baked:");
+                    System.out.println("    " + MarkedTask);
+                    break;
+
+                case "unmark":
+                    Task UnmarkedTask = tasks.get(Integer.parseInt(commands[1]) - 1);
+                    UnmarkedTask.markUndone();
+                    System.out.println("  hmm OK, this needs more kneading:");
+                    System.out.println("    " + UnmarkedTask);
+                    break;
+
+                default:
+                    tasks.add(new Task(input));
+                    System.out.println("added: " + input);
+                    break;
             }
 
             printLine();
