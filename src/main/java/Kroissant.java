@@ -25,13 +25,21 @@ public class Kroissant {
             try {
                 // 2. Safe Parsing
                 String[] parts = input.split(" ", 2);
-                String command = parts[0];
+                String commandStr = parts[0]; // Kept as String for Enum conversion
                 String arguments = (parts.length > 1) ? parts[1] : "";
 
                 printLine();
 
+                // 3. Convert String to Enum (Minimal Change Logic)
+                Command command;
+                try {
+                    command = Command.valueOf(commandStr.toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    throw new KroissantException("I don't have a recipe for that! Is it a secret menu item?");
+                }
+
                 switch (command) {
-                    case "list":
+                    case LIST:
                         if (tasks.isEmpty()) {
                             System.out.println("  The oven is empty! Time to get kneading.");
                         } else {
@@ -42,7 +50,7 @@ public class Kroissant {
                         }
                         break;
 
-                    case "mark":
+                    case MARK:
                         validateArgs(arguments);
                         int markIndex = Integer.parseInt(arguments) - 1;
                         tasks.get(markIndex).markDone();
@@ -50,7 +58,7 @@ public class Kroissant {
                         System.out.println("    " + tasks.get(markIndex));
                         break;
 
-                    case "unmark":
+                    case UNMARK:
                         validateArgs(arguments);
                         int unmarkIndex = Integer.parseInt(arguments) - 1;
                         tasks.get(unmarkIndex).markUndone();
@@ -58,7 +66,7 @@ public class Kroissant {
                         System.out.println("    " + tasks.get(unmarkIndex));
                         break;
 
-                    case "todo":
+                    case TODO:
                         if (arguments.isEmpty()) {
                             throw new KroissantException("You can't bake air! The description is empty.");
                         }
@@ -67,7 +75,7 @@ public class Kroissant {
                         printAddedTask(newTodo, tasks.size());
                         break;
 
-                    case "deadline":
+                    case DEADLINE:
                         if (!arguments.contains(" /by ")) {
                             throw new KroissantException("Don't let it burn! Please set a '/by' timer.");
                         }
@@ -77,7 +85,7 @@ public class Kroissant {
                         printAddedTask(newDeadline, tasks.size());
                         break;
 
-                    case "event":
+                    case EVENT:
                         if (!arguments.contains(" /from ") || !arguments.contains(" /to ")) {
                             throw new KroissantException("This party is half-baked! I need '/from' and '/to' times.");
                         }
@@ -87,14 +95,14 @@ public class Kroissant {
                         printAddedTask(newEvent, tasks.size());
                         break;
 
-                    case "delete":
+                    case DELETE:
                         validateArgs(arguments);
                         int deleteIndex = Integer.parseInt(arguments) - 1;
                         Task removedTask = tasks.remove(deleteIndex);
                         printDeletedTasks(removedTask, tasks.size());
                         break;
-                    default:
-                        throw new KroissantException("I don't have a recipe for that! Is it a secret menu item?");
+
+                    // No default case needed anymore!
                 }
 
             } catch (KroissantException e) {
