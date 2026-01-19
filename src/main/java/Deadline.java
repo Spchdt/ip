@@ -3,7 +3,7 @@ public class Deadline extends Task {
 
     public Deadline(String title, String date) {
         super(title);
-        this.date = date.substring(date.indexOf(" ") + 1);
+        this.date = date;
     }
 
     private String dateToString() {

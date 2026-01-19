@@ -4,8 +4,8 @@ public class Event extends Task {
 
     public Event(String title, String from, String to) {
         super(title);
-        this.from = from.substring(from.indexOf(" ") + 1);
-        this.to = to.substring(to.indexOf(" ") + 1);
+        this.from = from;
+        this.to = to;
     }
 
     private String durationToString() {
