@@ -1,45 +1,62 @@
 ____________________________________________________________
-  Welcome! I'm Kroissant.
-  What do you knead today?
+  Rise and Shine! I'm Kroissant.
+  What ingredients are we mixing today?
 ____________________________________________________________
->>   Here's what's still need to be cooking:
+>> ____________________________________________________________
+  The oven is empty! Time to get kneading.
 ____________________________________________________________
->>   Added task:
-    [T][ ] make dinner
-Now you got 1 stuff in the list!
+>> ____________________________________________________________
+  Okay, I've folded this into the dough:
+    [T][ ] buy flour
+  Now you have 1 pastries baking in the list!
 ____________________________________________________________
->>   Added task:
-    [T][ ] watch movie
-Now you got 2 stuff in the list!
+>> ____________________________________________________________
+  Okay, I've folded this into the dough:
+    [D][ ] knead dough (by: 2pm)
+  Now you have 2 pastries baking in the list!
 ____________________________________________________________
->>   Added task:
-    [D][ ] buy sourdough (by: Sunday)
-Now you got 3 stuff in the list!
+>> ____________________________________________________________
+  Okay, I've folded this into the dough:
+    [E][ ] bake bread (from: 3pm to: 5pm)
+  Now you have 3 pastries baking in the list!
 ____________________________________________________________
->>   Added task:
-    [E][ ] cooking lesson (from: Mon 2pm to: 6pm)
-Now you got 4 stuff in the list!
+>> ____________________________________________________________
+  Here are the pastries rising in your list:
+  1. [T][ ] buy flour
+  2. [D][ ] knead dough (by: 2pm)
+  3. [E][ ] bake bread (from: 3pm to: 5pm)
 ____________________________________________________________
->>   Good Job! This task is fully baked:
-    [T][X] make dinner
+>> ____________________________________________________________
+  Chef's kiss! This task is golden brown and fully baked:
+    [T][X] buy flour
 ____________________________________________________________
->>   Here's what's still need to be cooking:
-1. [T][X] make dinner
-2. [T][ ] watch movie
-3. [D][ ] buy sourdough (by: Sunday)
-4. [E][ ] cooking lesson (from: Mon 2pm to: 6pm)
+>> ____________________________________________________________
+  Chef's kiss! This task is golden brown and fully baked:
+    [E][X] bake bread (from: 3pm to: 5pm)
 ____________________________________________________________
->>   Good Job! This task is fully baked:
-    [D][X] buy sourdough (by: Sunday)
+>> ____________________________________________________________
+  Oops, looks a bit doughy inside. Putting it back in the oven:
+    [T][ ] buy flour
 ____________________________________________________________
->>   Here's what's still need to be cooking:
-1. [T][X] make dinner
-2. [T][ ] watch movie
-3. [D][X] buy sourdough (by: Sunday)
-4. [E][ ] cooking lesson (from: Mon 2pm to: 6pm)
+>> ____________________________________________________________
+  OH CRUMBS!!! You can't bake air! The description is empty.
 ____________________________________________________________
->> bye
+>> ____________________________________________________________
+  OH CRUMBS!!! Don't let it burn! Please set a '/by' timer.
 ____________________________________________________________
+>> ____________________________________________________________
+  OH CRUMBS!!! This party is half-baked! I need '/from' and '/to' times.
+____________________________________________________________
+>> ____________________________________________________________
+  OH CRUMBS!!! I don't have a recipe for that! Is it a secret menu item?
+____________________________________________________________
+>> ____________________________________________________________
+  OH CRUMBS!!! We don't have that many batches in the oven.
+____________________________________________________________
+>> ____________________________________________________________
+  OH CRUMBS!!! Which one? Give me the number, don't be a loafer!
+____________________________________________________________
+>> ____________________________________________________________
   Time to roll out!
-  Hope you have a loafly day!
+  Let's get this bread again soon!
 ____________________________________________________________

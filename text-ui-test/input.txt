@@ -1,10 +1,15 @@
 list
-todo make dinner
-todo watch movie
-deadline buy sourdough /by Sunday
-event cooking lesson /from Mon 2pm /to 6pm
+todo buy flour
+deadline knead dough /by 2pm
+event bake bread /from 3pm /to 5pm
+list
 mark 1
-list
 mark 3
-list
+unmark 1
+todo
+deadline make croissant
+event eat bread
+blah
+mark 100
+mark
 bye
