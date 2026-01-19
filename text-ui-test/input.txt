@@ -1,0 +1,10 @@
+list
+todo make dinner
+todo watch movie
+deadline buy sourdough /by Sunday
+event cooking lesson /from Mon 2pm /to 6pm
+mark 1
+list
+mark 3
+list
+bye
