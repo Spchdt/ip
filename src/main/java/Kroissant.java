@@ -5,11 +5,13 @@ public class Kroissant {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        //welcome message
         printLine();
         System.out.println("  Welcome! I'm Kroissant.");
         System.out.println("  What do you knead today?");
         printLine();
 
+        //Save and display list
         String userMsg = "";
         ArrayList<String> tasks = new ArrayList<>();
 
@@ -28,6 +30,8 @@ public class Kroissant {
 
             printLine();
         }
+
+        //Exit Message
         System.out.println("  Time to roll out!");
         System.out.println("  Hope you have a loafly day!");
         printLine();
