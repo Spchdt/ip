@@ -82,9 +82,13 @@ public class Kroissant {
                             throw new KroissantException("Don't let it burn! Please set a '/by' timer.");
                         }
                         String[] deadlineArgs = arguments.split(" /by ", 2);
-                        Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
-                        tasks.add(newDeadline);
-                        printAddedTask(newDeadline, tasks.size());
+                        try {
+                            Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
+                            tasks.add(newDeadline);
+                            printAddedTask(newDeadline, tasks.size());
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("  " + e.getMessage());
+                        }
                         break;
 
                     case EVENT:
