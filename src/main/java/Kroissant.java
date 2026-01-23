@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Kroissant {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        TaskManager taskManager = new TaskManager("tasks.ser");
+        ArrayList<Task> tasks = taskManager.loadTasks();
 
         printLine();
         System.out.println("  Rise and Shine! I'm Kroissant.");
@@ -105,6 +107,8 @@ public class Kroissant {
                     // No default case needed anymore!
                 }
 
+                taskManager.saveTasks(tasks);
+
             } catch (KroissantException e) {
                 System.out.println("  OH CRUMBS!!! " + e.getMessage());
             } catch (NumberFormatException e) {
@@ -121,6 +125,7 @@ public class Kroissant {
         System.out.println("  Time to roll out!");
         System.out.println("  Let's get this bread again soon!");
         printLine();
+        scanner.close();
     }
 
     public static void printLine() {
