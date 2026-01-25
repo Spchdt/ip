@@ -73,6 +73,17 @@ public class Ui {
         }
     }
 
+    public void showSearchResults(java.util.ArrayList<Task> matchingTasks) {
+        if (matchingTasks.isEmpty()) {
+            System.out.println("  No matching pastries found in the oven!");
+        } else {
+            System.out.println("  Here are the matching tasks in your list:");
+            for (int i = 0; i < matchingTasks.size(); i++) {
+                System.out.println("  " + (i + 1) + "." + matchingTasks.get(i));
+            }
+        }
+    }
+
     public void close() {
         scanner.close();
     }

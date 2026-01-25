@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
-    private static final DateTimeFormatter[] INPUT_FORMATS = new DateTimeFormatter[] {
+    private static final DateTimeFormatter[] INPUT_FORMATS = new DateTimeFormatter[]{
             DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm"),
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")

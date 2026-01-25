@@ -11,3 +11,4 @@ Week 3
 - Implement LocalDateTime in Deadline Class. 
 - Refactor Kroissant into different classes for A-MoreOOP.
 - Help me in creating tests for all the classes (A-JUnit).
+- Implement Search Function.

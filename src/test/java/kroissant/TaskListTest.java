@@ -2,6 +2,7 @@ package kroissant;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -117,5 +118,56 @@ public class TaskListTest {
         assertEquals(2, newTaskList.size());
         assertEquals(task1, newTaskList.get(0));
         assertEquals(task2, newTaskList.get(1));
+    }
+
+    @Test
+    public void testFindWithMatchingKeyword() {
+        taskList.add(task1);
+        taskList.add(task2);
+        taskList.add(task3);
+
+        ArrayList<Task> results = taskList.find("book");
+        assertEquals(1, results.size());
+        assertEquals(task2, results.get(0));
+    }
+
+    @Test
+    public void testFindCaseInsensitive() {
+        taskList.add(task1);
+        taskList.add(task2);
+        taskList.add(task3);
+
+        ArrayList<Task> results = taskList.find("BOOK");
+        assertEquals(1, results.size());
+        assertEquals(task2, results.get(0));
+    }
+
+    @Test
+    public void testFindMultipleMatches() {
+        Task task4 = new Deadline("return book", "31/12/2024 1800");
+        taskList.add(task1);
+        taskList.add(task2);
+        taskList.add(task4);
+
+        ArrayList<Task> results = taskList.find("book");
+        assertEquals(2, results.size());
+        assertTrue(results.contains(task2));
+        assertTrue(results.contains(task4));
+    }
+
+    @Test
+    public void testFindNoMatches() {
+        taskList.add(task1);
+        taskList.add(task2);
+        taskList.add(task3);
+
+        ArrayList<Task> results = taskList.find("homework");
+        assertEquals(0, results.size());
+    }
+
+    @Test
+    public void testFindEmptyList() {
+        ArrayList<Task> results = taskList.find("book");
+        assertEquals(0, results.size());
     }
 }
