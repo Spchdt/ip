@@ -1,3 +1,5 @@
+package kroissant;
+
 import java.util.Scanner;
 
 public class Ui {

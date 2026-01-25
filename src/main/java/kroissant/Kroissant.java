@@ -1,3 +1,5 @@
+package kroissant;
+
 public class Kroissant {
     private Storage storage;
     private TaskList tasks;
