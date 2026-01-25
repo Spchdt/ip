@@ -2,6 +2,10 @@ package kroissant;
 
 import java.util.Scanner;
 
+/**
+ * Handles all user interface interactions including displaying messages and
+ * reading user input.
+ */
 public class Ui {
     private Scanner scanner;
 
@@ -23,6 +27,11 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Reads a command from the user.
+     *
+     * @return The user input string.
+     */
     public String readCommand() {
         System.out.print(">> ");
         return scanner.nextLine();
@@ -40,12 +49,24 @@ public class Ui {
         System.out.println("  OH CRUMBS!!! Error loading tasks. Starting with an empty list.");
     }
 
+    /**
+     * Displays a message confirming that a task has been added.
+     *
+     * @param task      The task that was added.
+     * @param taskCount Total number of tasks after adding.
+     */
     public void showTaskAdded(Task task, int taskCount) {
         System.out.println("  Okay, I've folded this into the dough:");
         System.out.println("    " + task);
         System.out.println("  Now you have " + taskCount + " pastries baking in the list!");
     }
 
+    /**
+     * Displays a message confirming that a task has been deleted.
+     *
+     * @param task      The task that was deleted.
+     * @param taskCount Total number of tasks after deletion.
+     */
     public void showTaskDeleted(Task task, int taskCount) {
         System.out.println("  Noted. This one out the oven:");
         System.out.println("    " + task);
@@ -62,6 +83,12 @@ public class Ui {
         System.out.println("    " + task);
     }
 
+    /**
+     * Displays all tasks in the task list.
+     * Shows a message if the list is empty.
+     *
+     * @param tasks TaskList containing all tasks.
+     */
     public void showTaskList(TaskList tasks) {
         if (tasks.isEmpty()) {
             System.out.println("  The oven is empty! Time to get kneading.");

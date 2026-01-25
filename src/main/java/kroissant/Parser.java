@@ -1,7 +1,21 @@
 package kroissant;
 
+/**
+ * Parses and executes user commands for the task management application.
+ */
 public class Parser {
 
+    /**
+     * Parses the user input and executes the corresponding command.
+     * Returns true if the command is an exit command, false otherwise.
+     *
+     * @param input   User input string containing the command and arguments.
+     * @param tasks   TaskList to operate on.
+     * @param ui      UI instance for displaying messages.
+     * @param storage Storage instance for saving tasks.
+     * @return True if exit command is received, false otherwise.
+     * @throws KroissantException If the command is invalid or execution fails.
+     */
     public static boolean parseAndExecute(String input, TaskList tasks, Ui ui, Storage storage)
             throws KroissantException {
 

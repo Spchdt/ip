@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task with a deadline (due date and time).
+ * Supports multiple date/time input formats and displays in a standardized
+ * format.
+ */
 public class Deadline extends Task {
     private static final DateTimeFormatter[] INPUT_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
@@ -13,6 +18,14 @@ public class Deadline extends Task {
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
     private LocalDateTime date;
 
+    /**
+     * Constructs a Deadline task with the specified title and deadline.
+     *
+     * @param title Description of the task.
+     * @param date  Deadline in one of the supported formats (yyyy-MM-dd HHmm,
+     *              d/M/yyyy HHmm, dd/MM/yyyy HHmm).
+     * @throws IllegalArgumentException If the date format is invalid.
+     */
     public Deadline(String title, String date) {
         super(title);
         this.date = parseDate(date);

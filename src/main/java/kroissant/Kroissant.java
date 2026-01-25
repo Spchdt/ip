@@ -1,10 +1,21 @@
 package kroissant;
 
+/**
+ * Represents the main chatbot application for task management.
+ * Handles initialization, user interaction loop, and task persistence.
+ */
 public class Kroissant {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a Kroissant instance with the specified storage file path.
+     * Initializes UI, storage, and attempts to load existing tasks.
+     * If loading fails, starts with an empty task list.
+     *
+     * @param filePath Path to the file where tasks are stored.
+     */
     public Kroissant(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -16,6 +27,12 @@ public class Kroissant {
         }
     }
 
+    /**
+     * Runs the main application loop.
+     * Displays welcome message, processes user commands until exit command is
+     * received,
+     * handles exceptions, and displays goodbye message on exit.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
