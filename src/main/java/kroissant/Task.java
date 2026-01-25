@@ -44,6 +44,10 @@ public class Task implements Serializable {
         this.isDone = false;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + title;
