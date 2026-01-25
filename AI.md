@@ -9,3 +9,4 @@ Week 2
 Week 3
 - Help create TaskManager when given a prompt that I want "a file that handle saving, loading, and updating tasks".
 - Implement LocalDateTime in Deadline Class. 
+- Refactor Kroissant into different classes for A-MoreOOP.
