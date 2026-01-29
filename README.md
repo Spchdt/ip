@@ -92,6 +92,6 @@ Built with modern Java practices including:
 
 ## AI Usage
 
-For information about how AI tools were used in the development of this project, please refer to [ai.md](ai.md).
+For information about how AI tools were used in the development of this project, please refer to [AI.md](AI.md).
 
 ---
