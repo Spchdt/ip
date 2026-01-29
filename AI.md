@@ -12,3 +12,7 @@ Week 3
 - Refactor Kroissant into different classes for A-MoreOOP.
 - Help me in creating tests for all the classes (A-JUnit).
 - Implement Search Function.
+
+Week 4
+- Write README.md
+- Write Description for PR
