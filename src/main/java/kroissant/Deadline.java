@@ -36,6 +36,7 @@ public class Deadline extends Task {
             try {
                 return LocalDateTime.parse(date, fmt);
             } catch (DateTimeParseException ignored) {
+                // Try next format
             }
         }
         throw new IllegalArgumentException("Invalid date format. Please use dd/MM/yyyy HHmm (e.g., 2/12/2019 1800)");

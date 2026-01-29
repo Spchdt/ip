@@ -1,22 +1,23 @@
 package kroissant;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.nio.file.Path;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 public class ParserTest {
+    @TempDir
+    Path tempDir;
+
     private TaskList taskList;
     private Ui ui;
     private Storage storage;
-
-    @TempDir
-    Path tempDir;
 
     @BeforeEach
     public void setUp() {
@@ -60,8 +61,8 @@ public class ParserTest {
 
     @Test
     public void testParseDeadlineWithoutBy() {
-        assertThrows(KroissantException.class,
-                () -> Parser.parseAndExecute("deadline submit report", taskList, ui, storage));
+        assertThrows(KroissantException.class, () -> Parser.parseAndExecute(
+                "deadline submit report", taskList, ui, storage));
     }
 
     @Test

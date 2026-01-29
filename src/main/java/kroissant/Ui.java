@@ -13,6 +13,9 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Displays the welcome message.
+     */
     public void showWelcome() {
         showLine();
         System.out.println("  Rise and Shine! I'm Kroissant.");
@@ -20,6 +23,9 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Displays the goodbye message.
+     */
     public void showGoodbye() {
         showLine();
         System.out.println("  Time to roll out!");
@@ -73,11 +79,21 @@ public class Ui {
         System.out.println("  Now you have " + taskCount + " pastries baking in the list!");
     }
 
+    /**
+     * Displays confirmation that a task was marked as done.
+     *
+     * @param task The task that was marked.
+     */
     public void showTaskMarked(Task task) {
         System.out.println("  Chef's kiss! This task is golden brown and fully baked:");
         System.out.println("    " + task);
     }
 
+    /**
+     * Displays confirmation that a task was unmarked.
+     *
+     * @param task The task that was unmarked.
+     */
     public void showTaskUnmarked(Task task) {
         System.out.println("  Oops, looks a bit doughy inside. Putting it back in the oven:");
         System.out.println("    " + task);
@@ -100,6 +116,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays search results.
+     *
+     * @param matchingTasks ArrayList of tasks matching the search.
+     */
     public void showSearchResults(java.util.ArrayList<Task> matchingTasks) {
         if (matchingTasks.isEmpty()) {
             System.out.println("  No matching pastries found in the oven!");

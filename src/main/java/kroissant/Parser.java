@@ -120,6 +120,10 @@ public class Parser {
         case BYE:
             // This case is handled in parseAndExecute
             break;
+
+        default:
+            // Should not reach here as invalid commands are caught earlier
+            break;
         }
     }
 
