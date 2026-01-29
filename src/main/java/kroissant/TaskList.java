@@ -80,6 +80,12 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Finds all tasks containing the specified keyword in their title.
+     *
+     * @param keyword The keyword to search for (case-insensitive).
+     * @return ArrayList of matching tasks.
+     */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks) {
