@@ -16,3 +16,4 @@ Week 3
 Week 4
 - Write README.md
 - Write Description for PR
+- Help integrate GUI
