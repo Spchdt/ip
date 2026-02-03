@@ -55,6 +55,22 @@ public class Kroissant {
         ui.close();
     }
 
+    /**
+     * Generates a response for the user's chat message.
+     *
+     * @param input The user's input command.
+     * @return The response from Kroissant.
+     */
+    public String getResponse(String input) {
+        try {
+            return Parser.getResponse(input, tasks, storage);
+        } catch (KroissantException e) {
+            return "OH CRUMBS!!! " + e.getMessage();
+        } catch (IndexOutOfBoundsException e) {
+            return "OH CRUMBS!!! We don't have that many batches in the oven.";
+        }
+    }
+
     public static void main(String[] args) {
         new Kroissant("tasks.ser").run();
     }
