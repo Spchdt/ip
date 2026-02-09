@@ -17,3 +17,6 @@ Week 4
 - Write README.md
 - Write Description for PR
 - Help integrate GUI
+
+Week 5
+- Investigate code that can be turn ArrayList into Streams
