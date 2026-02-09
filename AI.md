@@ -20,3 +20,4 @@ Week 4
 
 Week 5
 - Help test assert and fix the issue.
+- Proofread commit messages.
