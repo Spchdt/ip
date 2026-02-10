@@ -11,28 +11,24 @@ ____________________________________________________________
   Now you have 1 pastries baking in the list!
 ____________________________________________________________
 >> ____________________________________________________________
-  Okay, I've folded this into the dough:
-    [D][ ] knead dough (by: 2pm)
-  Now you have 2 pastries baking in the list!
+  OH CRUMBS!!! Invalid date format. Please use dd/MM/yyyy HHmm (e.g., 2/12/2019 1800)
 ____________________________________________________________
 >> ____________________________________________________________
   Okay, I've folded this into the dough:
     [E][ ] bake bread (from: 3pm to: 5pm)
-  Now you have 3 pastries baking in the list!
+  Now you have 2 pastries baking in the list!
 ____________________________________________________________
 >> ____________________________________________________________
   Here are the pastries rising in your list:
   1. [T][ ] buy flour
-  2. [D][ ] knead dough (by: 2pm)
-  3. [E][ ] bake bread (from: 3pm to: 5pm)
+  2. [E][ ] bake bread (from: 3pm to: 5pm)
 ____________________________________________________________
 >> ____________________________________________________________
   Chef's kiss! This task is golden brown and fully baked:
     [T][X] buy flour
 ____________________________________________________________
 >> ____________________________________________________________
-  Chef's kiss! This task is golden brown and fully baked:
-    [E][X] bake bread (from: 3pm to: 5pm)
+  OH CRUMBS!!! We don't have that many batches in the oven.
 ____________________________________________________________
 >> ____________________________________________________________
   Oops, looks a bit doughy inside. Putting it back in the oven:
@@ -57,11 +53,11 @@ ____________________________________________________________
   OH CRUMBS!!! Which one? Give me the number, don't be a loafer!
 ____________________________________________________________
 >> ____________________________________________________________
-  Noted. This one out the oven:
-    [E][X] bake bread (from: 3pm to: 5pm)
-  Now you have 2 pastries baking in the list!
+  OH CRUMBS!!! We don't have that many batches in the oven.
 ____________________________________________________________
 >> ____________________________________________________________
+____________________________________________________________
+____________________________________________________________
   Time to roll out!
   Let's get this bread again soon!
 ____________________________________________________________
