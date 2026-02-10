@@ -23,6 +23,7 @@ public class TaskList {
      * @param task Task to be added.
      */
     public void add(Task task) {
+        assert task != null : "Task to add cannot be null";
         tasks.add(task);
     }
 

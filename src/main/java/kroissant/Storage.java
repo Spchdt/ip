@@ -34,7 +34,7 @@ public class Storage {
         }
 
         try (FileInputStream fileIn = new FileInputStream(file);
-             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+                ObjectInputStream in = new ObjectInputStream(fileIn)) {
 
             return (ArrayList<Task>) in.readObject();
 
@@ -50,8 +50,9 @@ public class Storage {
      * @throws KroissantException If there is an error writing to the file.
      */
     public void save(ArrayList<Task> tasks) throws KroissantException {
+        assert tasks != null : "Tasks to save cannot be null";
         try (FileOutputStream fileOut = new FileOutputStream(filePath);
-             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+                ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(tasks);
 
         } catch (IOException e) {
