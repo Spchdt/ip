@@ -7,13 +7,12 @@ import java.util.Scanner;
  * reading user input.
  */
 public class Ui {
+    private static final String ERROR_PREFIX = "  OH CRUMBS!!! ";
     private Scanner scanner;
 
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
-
-    private static final String ERROR_PREFIX = "  OH CRUMBS!!! ";
 
     /**
      * Displays the welcome message.
