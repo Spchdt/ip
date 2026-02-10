@@ -13,6 +13,8 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
+    private static final String ERROR_PREFIX = "  OH CRUMBS!!! ";
+
     /**
      * Displays the welcome message.
      */
@@ -48,11 +50,11 @@ public class Ui {
     }
 
     public void showError(String message) {
-        System.out.println("  OH CRUMBS!!! " + message);
+        System.out.println(ERROR_PREFIX + message);
     }
 
     public void showLoadingError() {
-        System.out.println("  OH CRUMBS!!! Error loading tasks. Starting with an empty list.");
+        System.out.println(ERROR_PREFIX + "Error loading tasks. Starting with an empty list.");
     }
 
     /**
