@@ -25,14 +25,14 @@ public class TaskListTest {
     }
 
     @Test
-    public void testAddTask() {
+    public void testAddTask() throws KroissantException {
         taskList.add(task1);
         assertEquals(1, taskList.size());
         assertEquals(task1, taskList.get(0));
     }
 
     @Test
-    public void testAddMultipleTasks() {
+    public void testAddMultipleTasks() throws KroissantException {
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
@@ -43,7 +43,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testDeleteTask() {
+    public void testDeleteTask() throws KroissantException {
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
@@ -56,42 +56,42 @@ public class TaskListTest {
     }
 
     @Test
-    public void testDeleteInvalidIndex() {
+    public void testDeleteInvalidIndex() throws KroissantException {
         taskList.add(task1);
         assertThrows(IndexOutOfBoundsException.class, () -> taskList.delete(5));
         assertThrows(IndexOutOfBoundsException.class, () -> taskList.delete(-1));
     }
 
     @Test
-    public void testMarkTask() {
+    public void testMarkTask() throws KroissantException {
         taskList.add(task1);
         taskList.mark(0);
-        assertTrue(taskList.get(0).getStatusIcon().equals("X"));
+        assertEquals("X", taskList.get(0).getStatusIcon());
     }
 
     @Test
-    public void testUnmarkTask() {
+    public void testUnmarkTask() throws KroissantException {
         taskList.add(task1);
         taskList.mark(0);
         taskList.unmark(0);
-        assertTrue(taskList.get(0).getStatusIcon().equals(" "));
+        assertEquals(" ", taskList.get(0).getStatusIcon());
     }
 
     @Test
-    public void testMarkInvalidIndex() {
+    public void testMarkInvalidIndex() throws KroissantException {
         taskList.add(task1);
         assertThrows(IndexOutOfBoundsException.class, () -> taskList.mark(5));
     }
 
     @Test
-    public void testIsEmpty() {
+    public void testIsEmpty() throws KroissantException {
         assertTrue(taskList.isEmpty());
         taskList.add(task1);
         assertFalse(taskList.isEmpty());
     }
 
     @Test
-    public void testSize() {
+    public void testSize() throws KroissantException {
         assertEquals(0, taskList.size());
         taskList.add(task1);
         assertEquals(1, taskList.size());
@@ -102,7 +102,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testGetTasks() {
+    public void testGetTasks() throws KroissantException {
         taskList.add(task1);
         taskList.add(task2);
         ArrayList<Task> tasks = taskList.getTasks();
@@ -124,7 +124,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testFindWithMatchingKeyword() {
+    public void testFindWithMatchingKeyword() throws KroissantException {
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
@@ -135,7 +135,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testFindCaseInsensitive() {
+    public void testFindCaseInsensitive() throws KroissantException {
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
@@ -146,7 +146,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testFindMultipleMatches() {
+    public void testFindMultipleMatches() throws KroissantException {
         Task task4 = new Deadline("return book", "31/12/2024 1800");
         taskList.add(task1);
         taskList.add(task2);
@@ -159,7 +159,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testFindNoMatches() {
+    public void testFindNoMatches() throws KroissantException {
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
