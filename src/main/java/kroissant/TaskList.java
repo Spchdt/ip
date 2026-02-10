@@ -21,10 +21,24 @@ public class TaskList {
      * Adds a task to the list.
      *
      * @param task Task to be added.
+     * @throws KroissantException If the task is a duplicate.
      */
-    public void add(Task task) {
+    public void add(Task task) throws KroissantException {
         assert task != null : "Task to add cannot be null";
+        if (hasDuplicate(task)) {
+            throw new KroissantException("This task is already in the oven!");
+        }
         tasks.add(task);
+    }
+
+    /**
+     * Checks if a task is already in the list.
+     *
+     * @param task Task to check.
+     * @return True if a duplicate exists, false otherwise.
+     */
+    public boolean hasDuplicate(Task task) {
+        return tasks.contains(task);
     }
 
     /**

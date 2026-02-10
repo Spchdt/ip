@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Serves as the base class for all task types (Todo, Deadline, Event).
  */
 public class Task implements Serializable {
-    private String title;
+    private final String title;
     private boolean isDone;
 
     /**
@@ -46,6 +46,18 @@ public class Task implements Serializable {
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Task task = (Task) obj;
+        return title.equals(task.title);
     }
 
     @Override
