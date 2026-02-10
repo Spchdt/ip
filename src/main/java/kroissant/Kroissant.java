@@ -34,6 +34,7 @@ public class Kroissant {
      * handles exceptions, and displays goodbye message on exit.
      */
     public void run() {
+        assert ui != null : "UI must be initialized";
         ui.showWelcome();
         boolean isExit = false;
 

@@ -33,6 +33,7 @@ public class Parser {
      */
     public static boolean parseAndExecute(String input, TaskList tasks, Ui ui, Storage storage)
             throws KroissantException {
+        assert input != null : "Input command cannot be null";
 
         // Check for exit command
         if (input.equalsIgnoreCase(CMD_BYE)) {
@@ -59,6 +60,7 @@ public class Parser {
 
     private static void executeCommand(Command command, String arguments, TaskList tasks, Ui ui, Storage storage)
             throws KroissantException {
+        assert command != null : "Command cannot be null";
 
         switch (command) {
             case LIST:

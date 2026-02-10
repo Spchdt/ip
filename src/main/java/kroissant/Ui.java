@@ -64,6 +64,7 @@ public class Ui {
      * @param taskCount Total number of tasks after adding.
      */
     public void showTaskAdded(Task task, int taskCount) {
+        assert task != null : "Task to display cannot be null";
         System.out.println("  Okay, I've folded this into the dough:");
         System.out.println("    " + task);
         System.out.println("  Now you have " + taskCount + " pastries baking in the list!");
@@ -76,6 +77,7 @@ public class Ui {
      * @param taskCount Total number of tasks after deletion.
      */
     public void showTaskDeleted(Task task, int taskCount) {
+        assert task != null : "Task to display cannot be null";
         System.out.println("  Noted. This one out the oven:");
         System.out.println("    " + task);
         System.out.println("  Now you have " + taskCount + " pastries baking in the list!");
@@ -87,6 +89,7 @@ public class Ui {
      * @param task The task that was marked.
      */
     public void showTaskMarked(Task task) {
+        assert task != null : "Task to display cannot be null";
         System.out.println("  Chef's kiss! This task is golden brown and fully baked:");
         System.out.println("    " + task);
     }
@@ -97,6 +100,7 @@ public class Ui {
      * @param task The task that was unmarked.
      */
     public void showTaskUnmarked(Task task) {
+        assert task != null : "Task to display cannot be null";
         System.out.println("  Oops, looks a bit doughy inside. Putting it back in the oven:");
         System.out.println("    " + task);
     }
