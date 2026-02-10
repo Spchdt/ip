@@ -88,12 +88,8 @@ public class TaskList {
      * @return ArrayList of matching tasks.
      */
     public ArrayList<Task> find(String keyword) {
-        ArrayList<Task> matchingTasks = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
-                matchingTasks.add(task);
-            }
-        }
-        return matchingTasks;
+        return tasks.stream()
+                .filter(task -> task.getTitle().toLowerCase().contains(keyword.toLowerCase()))
+                .collect(java.util.stream.Collectors.toCollection(ArrayList::new));
     }
 }

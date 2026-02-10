@@ -19,6 +19,7 @@ Week 4
 - Help integrate GUI
 
 Week 5
+- Investigate code that can be turn ArrayList into Streams,
 - Help check and improve code quality.
 - Help test assert and fix the issue.
 - Proofread commit messages.
