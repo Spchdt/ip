@@ -2,6 +2,7 @@ package kroissant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -42,7 +43,7 @@ public class ParserTest {
         boolean isExit = Parser.parseAndExecute("todo buy milk", taskList, ui, storage);
         assertFalse(isExit);
         assertEquals(1, taskList.size());
-        assertTrue(taskList.get(0) instanceof Todo);
+        assertInstanceOf(Todo.class, taskList.get(0));
     }
 
     @Test
@@ -56,7 +57,7 @@ public class ParserTest {
                 taskList, ui, storage);
         assertFalse(isExit);
         assertEquals(1, taskList.size());
-        assertTrue(taskList.get(0) instanceof Deadline);
+        assertInstanceOf(Deadline.class, taskList.get(0));
     }
 
     @Test
@@ -71,7 +72,7 @@ public class ParserTest {
                 taskList, ui, storage);
         assertFalse(isExit);
         assertEquals(1, taskList.size());
-        assertTrue(taskList.get(0) instanceof Event);
+        assertInstanceOf(Event.class, taskList.get(0));
     }
 
     @Test
@@ -87,13 +88,13 @@ public class ParserTest {
     }
 
     @Test
-    public void testParseMarkWithoutIndex() {
+    public void testParseMarkWithoutIndex() throws KroissantException {
         taskList.add(new Todo("test task"));
         assertThrows(KroissantException.class, () -> Parser.parseAndExecute("mark", taskList, ui, storage));
     }
 
     @Test
-    public void testParseMarkWithInvalidIndex() {
+    public void testParseMarkWithInvalidIndex() throws KroissantException {
         taskList.add(new Todo("test task"));
         assertThrows(KroissantException.class, () -> Parser.parseAndExecute("mark abc", taskList, ui, storage));
     }
@@ -114,7 +115,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testParseDeleteWithoutIndex() {
+    public void testParseDeleteWithoutIndex() throws KroissantException {
         taskList.add(new Todo("test task"));
         assertThrows(KroissantException.class, () -> Parser.parseAndExecute("delete", taskList, ui, storage));
     }
