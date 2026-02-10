@@ -6,15 +6,6 @@ package kroissant;
 public class Parser {
 
     private static final String CMD_BYE = "BYE";
-    private static final String CMD_LIST = "LIST";
-    private static final String CMD_MARK = "MARK";
-    private static final String CMD_UNMARK = "UNMARK";
-    private static final String CMD_TODO = "TODO";
-    private static final String CMD_DEADLINE = "DEADLINE";
-    private static final String CMD_EVENT = "EVENT";
-    private static final String CMD_DELETE = "DELETE";
-    private static final String CMD_FIND = "FIND";
-
     private static final String ARG_BY = " /by ";
     private static final String ARG_FROM = " /from ";
     private static final String ARG_TO = " /to ";
@@ -63,45 +54,45 @@ public class Parser {
         assert command != null : "Command cannot be null";
 
         switch (command) {
-            case LIST:
-                ui.showTaskList(tasks);
-                break;
+        case LIST:
+            ui.showTaskList(tasks);
+            break;
 
-            case MARK:
-                markTask(arguments, tasks, storage, ui);
-                break;
+        case MARK:
+            markTask(arguments, tasks, storage, ui);
+            break;
 
-            case UNMARK:
-                unmarkTask(arguments, tasks, storage, ui);
-                break;
+        case UNMARK:
+            unmarkTask(arguments, tasks, storage, ui);
+            break;
 
-            case TODO:
-                addTodo(arguments, tasks, storage, ui);
-                break;
+        case TODO:
+            addTodo(arguments, tasks, storage, ui);
+            break;
 
-            case DEADLINE:
-                addDeadline(arguments, tasks, storage, ui);
-                break;
+        case DEADLINE:
+            addDeadline(arguments, tasks, storage, ui);
+            break;
 
-            case EVENT:
-                addEvent(arguments, tasks, storage, ui);
-                break;
+        case EVENT:
+            addEvent(arguments, tasks, storage, ui);
+            break;
 
-            case DELETE:
-                deleteTask(arguments, tasks, storage, ui);
-                break;
+        case DELETE:
+            deleteTask(arguments, tasks, storage, ui);
+            break;
 
-            case FIND:
-                findTask(arguments, tasks, ui);
-                break;
+        case FIND:
+            findTask(arguments, tasks, ui);
+            break;
 
-            case BYE:
-                // This case is handled in parseAndExecute
-                break;
+        case BYE:
+            // This case is handled in parseAndExecute
+            break;
 
-            default:
-                // Should not reach here as invalid commands are caught earlier
-                break;
+        default:
+            // Should not reach here as invalid commands are caught earlier
+            break;
         }
     }
 
@@ -223,35 +214,35 @@ public class Parser {
             throws KroissantException {
 
         switch (command) {
-            case LIST:
-                return getListResponse(tasks);
+        case LIST:
+            return getListResponse(tasks);
 
-            case MARK:
-                return markTaskResponse(arguments, tasks, storage);
+        case MARK:
+            return markTaskResponse(arguments, tasks, storage);
 
-            case UNMARK:
-                return unmarkTaskResponse(arguments, tasks, storage);
+        case UNMARK:
+            return unmarkTaskResponse(arguments, tasks, storage);
 
-            case TODO:
-                return addTodoResponse(arguments, tasks, storage);
+        case TODO:
+            return addTodoResponse(arguments, tasks, storage);
 
-            case DEADLINE:
-                return addDeadlineResponse(arguments, tasks, storage);
+        case DEADLINE:
+            return addDeadlineResponse(arguments, tasks, storage);
 
-            case EVENT:
-                return addEventResponse(arguments, tasks, storage);
+        case EVENT:
+            return addEventResponse(arguments, tasks, storage);
 
-            case DELETE:
-                return deleteTaskResponse(arguments, tasks, storage);
+        case DELETE:
+            return deleteTaskResponse(arguments, tasks, storage);
 
-            case FIND:
-                return findTaskResponse(arguments, tasks);
+        case FIND:
+            return findTaskResponse(arguments, tasks);
 
-            case BYE:
-                return "Time to roll out!\nLet's get this bread again soon!";
+        case BYE:
+            return "Time to roll out!\nLet's get this bread again soon!";
 
-            default:
-                throw new KroissantException("I don't have a recipe for that! Is it a secret menu item?");
+        default:
+            throw new KroissantException("I don't have a recipe for that! Is it a secret menu item?");
         }
     }
 
