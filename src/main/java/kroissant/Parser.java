@@ -18,6 +18,7 @@ public class Parser {
      */
     public static boolean parseAndExecute(String input, TaskList tasks, Ui ui, Storage storage)
             throws KroissantException {
+        assert input != null : "Input command cannot be null";
 
         // Check for exit command
         if (input.equals("bye")) {
@@ -44,86 +45,87 @@ public class Parser {
 
     private static void executeCommand(Command command, String arguments, TaskList tasks, Ui ui, Storage storage)
             throws KroissantException {
+        assert command != null : "Command cannot be null";
 
         switch (command) {
-        case LIST:
-            ui.showTaskList(tasks);
-            break;
+            case LIST:
+                ui.showTaskList(tasks);
+                break;
 
-        case MARK:
-            validateArgs(arguments);
-            int markIndex = parseIndex(arguments);
-            tasks.mark(markIndex);
-            ui.showTaskMarked(tasks.get(markIndex));
-            storage.save(tasks.getTasks());
-            break;
-
-        case UNMARK:
-            validateArgs(arguments);
-            int unmarkIndex = parseIndex(arguments);
-            tasks.unmark(unmarkIndex);
-            ui.showTaskUnmarked(tasks.get(unmarkIndex));
-            storage.save(tasks.getTasks());
-            break;
-
-        case TODO:
-            if (arguments.isEmpty()) {
-                throw new KroissantException("You can't bake air! The description is empty.");
-            }
-            Task newTodo = new Todo(arguments);
-            tasks.add(newTodo);
-            ui.showTaskAdded(newTodo, tasks.size());
-            storage.save(tasks.getTasks());
-            break;
-
-        case DEADLINE:
-            if (!arguments.contains(" /by ")) {
-                throw new KroissantException("Don't let it burn! Please set a '/by' timer.");
-            }
-            String[] deadlineArgs = arguments.split(" /by ", 2);
-            try {
-                Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
-                tasks.add(newDeadline);
-                ui.showTaskAdded(newDeadline, tasks.size());
+            case MARK:
+                validateArgs(arguments);
+                int markIndex = parseIndex(arguments);
+                tasks.mark(markIndex);
+                ui.showTaskMarked(tasks.get(markIndex));
                 storage.save(tasks.getTasks());
-            } catch (IllegalArgumentException e) {
-                throw new KroissantException(e.getMessage());
-            }
-            break;
+                break;
 
-        case EVENT:
-            if (!arguments.contains(" /from ") || !arguments.contains(" /to ")) {
-                throw new KroissantException("This party is half-baked! I need '/from' and '/to' times.");
-            }
-            String[] eventArgs = arguments.split(" /from | /to ");
-            Task newEvent = new Event(eventArgs[0], eventArgs[1], eventArgs[2]);
-            tasks.add(newEvent);
-            ui.showTaskAdded(newEvent, tasks.size());
-            storage.save(tasks.getTasks());
-            break;
+            case UNMARK:
+                validateArgs(arguments);
+                int unmarkIndex = parseIndex(arguments);
+                tasks.unmark(unmarkIndex);
+                ui.showTaskUnmarked(tasks.get(unmarkIndex));
+                storage.save(tasks.getTasks());
+                break;
 
-        case DELETE:
-            validateArgs(arguments);
-            int deleteIndex = parseIndex(arguments);
-            Task removedTask = tasks.delete(deleteIndex);
-            ui.showTaskDeleted(removedTask, tasks.size());
-            storage.save(tasks.getTasks());
-            break;
+            case TODO:
+                if (arguments.isEmpty()) {
+                    throw new KroissantException("You can't bake air! The description is empty.");
+                }
+                Task newTodo = new Todo(arguments);
+                tasks.add(newTodo);
+                ui.showTaskAdded(newTodo, tasks.size());
+                storage.save(tasks.getTasks());
+                break;
 
-        case FIND:
-            if (arguments.isEmpty()) {
-                throw new KroissantException("What are you looking for? Give me a keyword to search!");
-            }
-            ui.showSearchResults(tasks.find(arguments));
-            break;
+            case DEADLINE:
+                if (!arguments.contains(" /by ")) {
+                    throw new KroissantException("Don't let it burn! Please set a '/by' timer.");
+                }
+                String[] deadlineArgs = arguments.split(" /by ", 2);
+                try {
+                    Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
+                    tasks.add(newDeadline);
+                    ui.showTaskAdded(newDeadline, tasks.size());
+                    storage.save(tasks.getTasks());
+                } catch (IllegalArgumentException e) {
+                    throw new KroissantException(e.getMessage());
+                }
+                break;
 
-        case BYE:
-            // This case is handled in parseAndExecute
-            break;
+            case EVENT:
+                if (!arguments.contains(" /from ") || !arguments.contains(" /to ")) {
+                    throw new KroissantException("This party is half-baked! I need '/from' and '/to' times.");
+                }
+                String[] eventArgs = arguments.split(" /from | /to ");
+                Task newEvent = new Event(eventArgs[0], eventArgs[1], eventArgs[2]);
+                tasks.add(newEvent);
+                ui.showTaskAdded(newEvent, tasks.size());
+                storage.save(tasks.getTasks());
+                break;
 
-        default:
-            // Should not reach here as invalid commands are caught earlier
-            break;
+            case DELETE:
+                validateArgs(arguments);
+                int deleteIndex = parseIndex(arguments);
+                Task removedTask = tasks.delete(deleteIndex);
+                ui.showTaskDeleted(removedTask, tasks.size());
+                storage.save(tasks.getTasks());
+                break;
+
+            case FIND:
+                if (arguments.isEmpty()) {
+                    throw new KroissantException("What are you looking for? Give me a keyword to search!");
+                }
+                ui.showSearchResults(tasks.find(arguments));
+                break;
+
+            case BYE:
+                // This case is handled in parseAndExecute
+                break;
+
+            default:
+                // Should not reach here as invalid commands are caught earlier
+                break;
         }
     }
 
@@ -177,95 +179,95 @@ public class Parser {
             throws KroissantException {
 
         switch (command) {
-        case LIST:
-            if (tasks.isEmpty()) {
-                return "The oven is empty! Time to get kneading.";
-            } else {
-                StringBuilder sb = new StringBuilder("Here are the pastries rising in your list:\n");
-                for (int i = 0; i < tasks.size(); i++) {
-                    sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
+            case LIST:
+                if (tasks.isEmpty()) {
+                    return "The oven is empty! Time to get kneading.";
+                } else {
+                    StringBuilder sb = new StringBuilder("Here are the pastries rising in your list:\n");
+                    for (int i = 0; i < tasks.size(); i++) {
+                        sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
+                    }
+                    return sb.toString();
                 }
-                return sb.toString();
-            }
 
-        case MARK:
-            validateArgs(arguments);
-            int markIndex = parseIndex(arguments);
-            tasks.mark(markIndex);
-            storage.save(tasks.getTasks());
-            return "Chef's kiss! This task is golden brown and fully baked:\n  " + tasks.get(markIndex);
-
-        case UNMARK:
-            validateArgs(arguments);
-            int unmarkIndex = parseIndex(arguments);
-            tasks.unmark(unmarkIndex);
-            storage.save(tasks.getTasks());
-            return "Oops, looks a bit doughy inside. Putting it back in the oven:\n  " + tasks.get(unmarkIndex);
-
-        case TODO:
-            if (arguments.isEmpty()) {
-                throw new KroissantException("You can't bake air! The description is empty.");
-            }
-            Task newTodo = new Todo(arguments);
-            tasks.add(newTodo);
-            storage.save(tasks.getTasks());
-            return "Okay, I've folded this into the dough:\n  " + newTodo
-                    + "\nNow you have " + tasks.size() + " pastries baking in the list!";
-
-        case DEADLINE:
-            if (!arguments.contains(" /by ")) {
-                throw new KroissantException("Don't let it burn! Please set a '/by' timer.");
-            }
-            String[] deadlineArgs = arguments.split(" /by ", 2);
-            try {
-                Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
-                tasks.add(newDeadline);
+            case MARK:
+                validateArgs(arguments);
+                int markIndex = parseIndex(arguments);
+                tasks.mark(markIndex);
                 storage.save(tasks.getTasks());
-                return "Okay, I've folded this into the dough:\n  " + newDeadline
-                        + "\nNow you have " + tasks.size() + " pastries baking in the list!";
-            } catch (IllegalArgumentException e) {
-                throw new KroissantException(e.getMessage());
-            }
+                return "Chef's kiss! This task is golden brown and fully baked:\n  " + tasks.get(markIndex);
 
-        case EVENT:
-            if (!arguments.contains(" /from ") || !arguments.contains(" /to ")) {
-                throw new KroissantException("This party is half-baked! I need '/from' and '/to' times.");
-            }
-            String[] eventArgs = arguments.split(" /from | /to ");
-            Task newEvent = new Event(eventArgs[0], eventArgs[1], eventArgs[2]);
-            tasks.add(newEvent);
-            storage.save(tasks.getTasks());
-            return "Okay, I've folded this into the dough:\n  " + newEvent
-                    + "\nNow you have " + tasks.size() + " pastries baking in the list!";
+            case UNMARK:
+                validateArgs(arguments);
+                int unmarkIndex = parseIndex(arguments);
+                tasks.unmark(unmarkIndex);
+                storage.save(tasks.getTasks());
+                return "Oops, looks a bit doughy inside. Putting it back in the oven:\n  " + tasks.get(unmarkIndex);
 
-        case DELETE:
-            validateArgs(arguments);
-            int deleteIndex = parseIndex(arguments);
-            Task removedTask = tasks.delete(deleteIndex);
-            storage.save(tasks.getTasks());
-            return "Noted. This one out the oven:\n  " + removedTask
-                    + "\nNow you have " + tasks.size() + " pastries baking in the list!";
-
-        case FIND:
-            if (arguments.isEmpty()) {
-                throw new KroissantException("What are you looking for! Give me a keyword to search!");
-            }
-            java.util.ArrayList<Task> matchingTasks = tasks.find(arguments);
-            if (matchingTasks.isEmpty()) {
-                return "No matching pastries found in the oven!";
-            } else {
-                StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
-                for (int i = 0; i < matchingTasks.size(); i++) {
-                    sb.append((i + 1)).append(". ").append(matchingTasks.get(i)).append("\n");
+            case TODO:
+                if (arguments.isEmpty()) {
+                    throw new KroissantException("You can't bake air! The description is empty.");
                 }
-                return sb.toString();
-            }
+                Task newTodo = new Todo(arguments);
+                tasks.add(newTodo);
+                storage.save(tasks.getTasks());
+                return "Okay, I've folded this into the dough:\n  " + newTodo
+                        + "\nNow you have " + tasks.size() + " pastries baking in the list!";
 
-        case BYE:
-            return "Time to roll out!\nLet's get this bread again soon!";
+            case DEADLINE:
+                if (!arguments.contains(" /by ")) {
+                    throw new KroissantException("Don't let it burn! Please set a '/by' timer.");
+                }
+                String[] deadlineArgs = arguments.split(" /by ", 2);
+                try {
+                    Task newDeadline = new Deadline(deadlineArgs[0], deadlineArgs[1]);
+                    tasks.add(newDeadline);
+                    storage.save(tasks.getTasks());
+                    return "Okay, I've folded this into the dough:\n  " + newDeadline
+                            + "\nNow you have " + tasks.size() + " pastries baking in the list!";
+                } catch (IllegalArgumentException e) {
+                    throw new KroissantException(e.getMessage());
+                }
 
-        default:
-            throw new KroissantException("I don't have a recipe for that! Is it a secret menu item?");
+            case EVENT:
+                if (!arguments.contains(" /from ") || !arguments.contains(" /to ")) {
+                    throw new KroissantException("This party is half-baked! I need '/from' and '/to' times.");
+                }
+                String[] eventArgs = arguments.split(" /from | /to ");
+                Task newEvent = new Event(eventArgs[0], eventArgs[1], eventArgs[2]);
+                tasks.add(newEvent);
+                storage.save(tasks.getTasks());
+                return "Okay, I've folded this into the dough:\n  " + newEvent
+                        + "\nNow you have " + tasks.size() + " pastries baking in the list!";
+
+            case DELETE:
+                validateArgs(arguments);
+                int deleteIndex = parseIndex(arguments);
+                Task removedTask = tasks.delete(deleteIndex);
+                storage.save(tasks.getTasks());
+                return "Noted. This one out the oven:\n  " + removedTask
+                        + "\nNow you have " + tasks.size() + " pastries baking in the list!";
+
+            case FIND:
+                if (arguments.isEmpty()) {
+                    throw new KroissantException("What are you looking for! Give me a keyword to search!");
+                }
+                java.util.ArrayList<Task> matchingTasks = tasks.find(arguments);
+                if (matchingTasks.isEmpty()) {
+                    return "No matching pastries found in the oven!";
+                } else {
+                    StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
+                    for (int i = 0; i < matchingTasks.size(); i++) {
+                        sb.append((i + 1)).append(". ").append(matchingTasks.get(i)).append("\n");
+                    }
+                    return sb.toString();
+                }
+
+            case BYE:
+                return "Time to roll out!\nLet's get this bread again soon!";
+
+            default:
+                throw new KroissantException("I don't have a recipe for that! Is it a secret menu item?");
         }
     }
 }
