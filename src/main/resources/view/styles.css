@@ -1,0 +1,59 @@
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f4f4f4;
+}
+
+.text-field {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-padding: 10px;
+}
+
+.button {
+    -fx-background-color: #e67e22;
+    /* Carrot Orange */
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #d35400;
+    /* Pumpkin Orange */
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Base style for labels in dialog box */
+.label {
+    -fx-padding: 10px;
+    -fx-background-radius: 15;
+    -fx-background-color: #ffeecc;
+    /* Very light orange base for all labels if needed, or keep neutral */
+    -fx-wrap-text: true;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
+/* Specific style for user dialog (right side) */
+.user-label .label {
+    -fx-background-color: #fce8b2;
+    /* Light Orange/Yellow */
+    -fx-text-fill: black;
+}
+
+/* Specific style for bot dialog (left side) */
+.reply-label .label {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}

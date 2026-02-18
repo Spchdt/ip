@@ -23,3 +23,6 @@ Week 5
 - Help check and improve code quality.
 - Help test assert and fix the issue.
 - Proofread commit messages.
+
+Week 6
+- CSS Styling Improvement
