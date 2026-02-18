@@ -26,3 +26,4 @@ Week 5
 
 Week 6
 - CSS Styling Improvement
+- Generated User Guide
